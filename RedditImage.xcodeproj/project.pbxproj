@@ -17,6 +17,9 @@
 		3AA43BBA263A03C6006E8E75 /* RedditImageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43BB9263A03C6006E8E75 /* RedditImageUITests.swift */; };
 		3AA43BD4263A11BF006E8E75 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43BD3263A11BF006E8E75 /* UITextField.swift */; };
 		3AA43BDA263A11D1006E8E75 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43BD8263A11D1006E8E75 /* UIView.swift */; };
+		3AA43C07263A180F006E8E75 /* ImagePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43C05263A180F006E8E75 /* ImagePhoto.swift */; };
+		3AA43C08263A180F006E8E75 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43C06263A180F006E8E75 /* ImageModel.swift */; };
+		3AA43C16263A1AAE006E8E75 /* ImagesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43C15263A1AAE006E8E75 /* ImagesPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		3AA43BBB263A03C6006E8E75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AA43BD3263A11BF006E8E75 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		3AA43BD8263A11D1006E8E75 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		3AA43C05263A180F006E8E75 /* ImagePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePhoto.swift; sourceTree = "<group>"; };
+		3AA43C06263A180F006E8E75 /* ImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		3AA43C15263A1AAE006E8E75 /* ImagesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,7 @@
 		3AA43B96263A03C4006E8E75 /* RedditImage */ = {
 			isa = PBXGroup;
 			children = (
+				3AA43C01263A1799006E8E75 /* search */,
 				3AA43BD0263A115A006E8E75 /* utils */,
 				3AA43B97263A03C4006E8E75 /* AppDelegate.swift */,
 				3AA43B99263A03C4006E8E75 /* SceneDelegate.swift */,
@@ -156,6 +163,40 @@
 				3AA43BD8263A11D1006E8E75 /* UIView.swift */,
 			);
 			path = inspectable;
+			sourceTree = "<group>";
+		};
+		3AA43C01263A1799006E8E75 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				3AA43C04263A17CD006E8E75 /* view */,
+				3AA43C03263A17B2006E8E75 /* model */,
+				3AA43C02263A17A8006E8E75 /* presenter */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
+		3AA43C02263A17A8006E8E75 /* presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3AA43C15263A1AAE006E8E75 /* ImagesPresenter.swift */,
+			);
+			path = presenter;
+			sourceTree = "<group>";
+		};
+		3AA43C03263A17B2006E8E75 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				3AA43C05263A180F006E8E75 /* ImagePhoto.swift */,
+				3AA43C06263A180F006E8E75 /* ImageModel.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		3AA43C04263A17CD006E8E75 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,9 +329,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA43C08263A180F006E8E75 /* ImageModel.swift in Sources */,
 				3AA43BDA263A11D1006E8E75 /* UIView.swift in Sources */,
+				3AA43C16263A1AAE006E8E75 /* ImagesPresenter.swift in Sources */,
 				3AA43B9C263A03C4006E8E75 /* ViewController.swift in Sources */,
 				3AA43B98263A03C4006E8E75 /* AppDelegate.swift in Sources */,
+				3AA43C07263A180F006E8E75 /* ImagePhoto.swift in Sources */,
 				3AA43B9A263A03C4006E8E75 /* SceneDelegate.swift in Sources */,
 				3AA43BD4263A11BF006E8E75 /* UITextField.swift in Sources */,
 			);
