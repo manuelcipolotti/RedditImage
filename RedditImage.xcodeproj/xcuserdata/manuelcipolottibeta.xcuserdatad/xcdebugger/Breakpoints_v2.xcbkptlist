@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "3327182B-E428-4476-B6B6-5C2CA4F4A031"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C7EA923D-3524-4CE4-B0A5-8BB77234F86E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RedditImage/search/model/ImageModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "getImagesFromURL(keyword:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C7EA923D-3524-4CE4-B0A5-8BB77234F86E - c50781239605394c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (RedditImage.RedditResponse) -&gt; Swift.Optional&lt;Swift.Array&lt;RedditImage.ImagePhoto&gt;&gt; in RedditImage.ImageModel.getImagesFromURL(keyword: Swift.String) -&gt; Combine.AnyPublisher&lt;Swift.Optional&lt;Swift.Array&lt;RedditImage.ImagePhoto&gt;&gt;, Swift.Error&gt;"
+                  moduleName = "RedditImage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/manuelcipolottibeta/Development/workspace_xcode/iquii/RedditImage/RedditImage/search/model/ImageModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "418">
+               </Location>
+               <Location
+                  uuid = "C7EA923D-3524-4CE4-B0A5-8BB77234F86E - 9b77f6191a5b347c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (RedditImage.Child) -&gt; Swift.Bool in closure #2 (RedditImage.RedditResponse) -&gt; Swift.Optional&lt;Swift.Array&lt;RedditImage.ImagePhoto&gt;&gt; in RedditImage.ImageModel.getImagesFromURL(keyword: Swift.String) -&gt; Combine.AnyPublisher&lt;Swift.Optional&lt;Swift.Array&lt;RedditImage.ImagePhoto&gt;&gt;, Swift.Error&gt;"
+                  moduleName = "RedditImage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/manuelcipolottibeta/Development/workspace_xcode/iquii/RedditImage/RedditImage/search/model/ImageModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F015BDFB-DA1F-4916-B3D0-F375421690F0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RedditImage/search/model/ImageModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "getImagesFromURL(keyword:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F015BDFB-DA1F-4916-B3D0-F375421690F0 - c5078123960538f6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (RedditImage.RedditResponse) -&gt; Swift.Optional&lt;Swift.Array&lt;RedditImage.ImagePhoto&gt;&gt; in RedditImage.ImageModel.getImagesFromURL(keyword: Swift.String) -&gt; Combine.AnyPublisher&lt;Swift.Optional&lt;Swift.Array&lt;RedditImage.ImagePhoto&gt;&gt;, Swift.Error&gt;"
+                  moduleName = "RedditImage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/manuelcipolottibeta/Development/workspace_xcode/iquii/RedditImage/RedditImage/search/model/ImageModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "648">
+               </Location>
+               <Location
+                  uuid = "F015BDFB-DA1F-4916-B3D0-F375421690F0 - bc92c6f2db6270d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (RedditImage.Child) -&gt; RedditImage.ImagePhoto in closure #2 (RedditImage.RedditResponse) -&gt; Swift.Optional&lt;Swift.Array&lt;RedditImage.ImagePhoto&gt;&gt; in RedditImage.ImageModel.getImagesFromURL(keyword: Swift.String) -&gt; Combine.AnyPublisher&lt;Swift.Optional&lt;Swift.Array&lt;RedditImage.ImagePhoto&gt;&gt;, Swift.Error&gt;"
+                  moduleName = "RedditImage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/manuelcipolottibeta/Development/workspace_xcode/iquii/RedditImage/RedditImage/search/model/ImageModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "196">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9F8D91CA-29CF-4482-8F3E-03E97830B6A9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RedditImage/search/model/ImageModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "getImagesFromURL(keyword:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4292DE7D-E2B7-40AA-8E37-8075EE60B439"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RedditImage/search/model/ImageModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "getImagesFromURL(keyword:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0F61DC00-FD7A-400C-83AC-2AC2F44C82C0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RedditImage/search/model/ImageModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "getImagesFromURL(keyword:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8DC9BC38-F33A-43F8-91BB-5B9A76514AD1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RedditImage/search/model/ImageModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "getImagesFromURL(keyword:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

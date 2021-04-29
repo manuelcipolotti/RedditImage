@@ -9,7 +9,18 @@
 import Foundation
 import Combine
 
+enum ServiceError: Error {
+    case url(URLError?)
+    case decode
+    case urlMissing
+    case empty
+    case userMissing
+    case unknown(Error)
+}
+
 class ImageModel: NSObject {
+    
+    let urlReddit: String = "https://www.reddit.com/r/{KEYWORD}/top.json"
     
     func getImages(keyword: String) -> AnyPublisher<[ImagePhoto]?, Never> {
         
@@ -31,6 +42,75 @@ class ImageModel: NSObject {
             }
           }.eraseToAnyPublisher()
 
+    }
+    
+    func getImagesFromURL(keyword: String) -> AnyPublisher<[ImagePhoto]?, Error> {
+        
+        enum HTTPError: LocalizedError {
+            case statusCode
+        }
+        
+        if keyword.isEmpty {
+            return Just<[ImagePhoto]?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+        
+
+        if let url = URL.init(string: self.urlReddit.replacingOccurrences(of: "{KEYWORD}", with: keyword)) {
+            return URLSession.shared.dataTaskPublisher(for: url)
+                .tryMap { element -> Data in
+                    
+                    if let httpResponse = element.response as? HTTPURLResponse,
+                       httpResponse.statusCode == 200 || httpResponse.statusCode == 302 || httpResponse.statusCode == 404{
+                        if httpResponse.statusCode == 200 {
+                            return element.data
+                        } else {
+                            throw ServiceError.empty
+                        }
+                    } else {
+                        throw URLError(.badServerResponse)
+                    }
+                    
+                }
+                .decode(type: RedditResponse.self, decoder: JSONDecoder())
+                .map({ redditImage in
+                    if let childrens = redditImage.data?.children {
+                        
+                        let redditChilds: [RedditImage.Child] = childrens.filter({
+                            let children = $0
+                            if let _ = children.data?.thumbnail,
+                               let _ = children.data?.title,
+                               let _ = children.data?.author {
+                                return true
+                            } else {
+                                return false
+                            }
+                        })
+                        let listImagePhoto: [ImagePhoto] = redditChilds.map({
+                            let children = $0
+                            if let imageUrl = children.data?.thumbnail,
+                               let title = children.data?.title,
+                               let author = children.data?.author {
+                                return ImagePhoto.init(title: title,
+                                                       url: imageUrl,
+                                                       author: author, first: true,
+                                                       last: false)
+                            } else {
+                                return ImagePhoto.init(title: "", url: "", author: "", first: false, last: false)
+                            }
+                        })
+                        return listImagePhoto
+                    } else {
+                        let listImagePhoto: [ImagePhoto] = []
+                        return listImagePhoto
+                    }
+                    
+                    
+            })
+            .eraseToAnyPublisher()
+        } else {
+            return Fail(error: ServiceError.urlMissing).eraseToAnyPublisher()
+        }
+        
     }
     
 }

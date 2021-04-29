@@ -24,12 +24,22 @@ class ImagesPresenter: NSObject {
     
     func getImages(keyword: String) {
         
-        model.getImages(keyword: keyword)
+        model.getImagesFromURL(keyword: keyword)
             .sink(receiveCompletion: {
                 completion in
                 switch completion {
                 case .failure(let error):
-                    print(error, "Failed")
+                    if let serviceError = error as? ServiceError{
+                        switch serviceError {
+                        case .empty:
+                            self.imagesList = []
+                        default:
+                            print(error, "Failed")
+                        }
+                        print(serviceError)
+                    } else {
+                        print(error, "Failed")
+                    }
                 case .finished:
                     print("Finished quest")
                 }

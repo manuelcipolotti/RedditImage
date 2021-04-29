@@ -27,19 +27,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         ImagesPresenter.instance.$imagesList.sink(receiveValue: { list in
             
-            if let list = list {
-                self.refreshButton.isHidden = false
-                if list.count == 0 {
-                    self.noDataFoundView.isHidden = false
-                    self.imageCollectionView.isHidden = true
+            DispatchQueue.main.async(execute: {
+                if let list = list {
+                    self.refreshButton.isHidden = false
+                    if list.count == 0 {
+                        self.noDataFoundView.isHidden = false
+                        self.imageCollectionView.isHidden = true
+                    } else {
+                        self.noDataFoundView.isHidden = true
+                        self.imageCollectionView.isHidden = false
+                    }
                 } else {
+                    self.refreshButton.isHidden = true
                     self.noDataFoundView.isHidden = true
-                    self.imageCollectionView.isHidden = false
                 }
-            } else {
-                self.refreshButton.isHidden = true
-                self.noDataFoundView.isHidden = true
-            }
+            })
+            
             
         }).store(in: &self.canc)
         
