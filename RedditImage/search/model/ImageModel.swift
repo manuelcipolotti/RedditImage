@@ -77,9 +77,10 @@ class ImageModel: NSObject {
                         
                         let redditChilds: [RedditImage.Child] = childrens.filter({
                             let children = $0
-                            if let _ = children.data?.thumbnail,
+                            if let thumbnail = children.data?.thumbnail,
                                let _ = children.data?.title,
-                               let _ = children.data?.author {
+                               let _ = children.data?.author,
+                               !thumbnail.isEmpty {
                                 return true
                             } else {
                                 return false
