@@ -86,19 +86,26 @@ class ImageModel: NSObject {
                                 return false
                             }
                         })
-                        let listImagePhoto: [ImagePhoto] = redditChilds.map({
+                        var listImagePhoto: [ImagePhoto] = redditChilds.map({
                             let children = $0
                             if let imageUrl = children.data?.thumbnail,
                                let title = children.data?.title,
                                let author = children.data?.author {
                                 return ImagePhoto.init(title: title,
                                                        url: imageUrl,
-                                                       author: author, first: true,
+                                                       author: author,
+                                                       first: false,
                                                        last: false)
                             } else {
                                 return ImagePhoto.init(title: "", url: "", author: "", first: false, last: false)
                             }
                         })
+                        if let _ = listImagePhoto.first {
+                            listImagePhoto[0].first = true
+                        }
+                        if let _ = listImagePhoto.last {
+                            listImagePhoto[listImagePhoto.count-1].last = true
+                        }
                         return listImagePhoto
                     } else {
                         let listImagePhoto: [ImagePhoto] = []

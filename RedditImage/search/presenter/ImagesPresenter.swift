@@ -15,8 +15,11 @@ class ImagesPresenter: NSObject {
     static let instance: ImagesPresenter = ImagesPresenter.init()
     
     @Published public var imagesList: [ImagePhoto]?
+    @Published public var imageSelected: ImagePhoto?
 
     @Published public var newAnswer: Bool?
+    
+    private var imageSelectedIndex: Int?
 
     private var subscribers = Set<AnyCancellable>()
     
@@ -48,4 +51,40 @@ class ImagesPresenter: NSObject {
                 self.imagesList = list
             }).store(in: &subscribers)
     }
+    
+    
+    func getImage(index: Int) {
+        
+        if let imagesList = self.imagesList,
+           index >= 0 && index < imagesList.count {
+            self.imageSelectedIndex = index
+            let image = imagesList[index]
+            self.imageSelected = image
+        }
+    }
+    
+    func getNext()  {
+        if var index = self.imageSelectedIndex {
+            index += 1
+            if let imagesList = self.imagesList,
+               index >= 0 && index < imagesList.count {
+                self.imageSelectedIndex = index
+                let image = imagesList[index]
+                self.imageSelected = image
+            }
+        }
+    }
+    
+    func getPrior()  {
+        if var index = self.imageSelectedIndex {
+            index -= 1
+            if let imagesList = self.imagesList,
+               index >= 0 && index < imagesList.count {
+                self.imageSelectedIndex = index
+                let image = imagesList[index]
+                self.imageSelected = image
+            }
+        }
+    }
+
 }

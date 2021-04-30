@@ -27,6 +27,17 @@ class RedditImageUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
+        let keywordTextField = app.textFields["Keyword"]
+        keywordTextField.tap()
+        keywordTextField.typeText("batman")
+        app.collectionViews.children(matching: .cell).element(boundBy: 5).children(matching: .other).element.tap()
+        
+        let rightButton = app.buttons["Right"]
+        rightButton.tap()
+        rightButton.tap()
+        app.navigationBars["Detail"].buttons["Reddit Photo Search"].tap()
+        keywordTextField.tap()
+
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }

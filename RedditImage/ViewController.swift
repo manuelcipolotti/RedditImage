@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         self.refreshButton.isHidden = true
         self.noDataFoundView.isHidden = true
         self.noTextSearchView.isHidden = false
-
+        self.imageCollectionView.delegate = self
         ImagesPresenter.instance.$imagesList.sink(receiveValue: { list in
             
             DispatchQueue.main.async(execute: {
@@ -65,6 +65,19 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         super.viewWillLayoutSubviews()
         self.imageCollectionView.collectionViewLayout.invalidateLayout()
     }
+    
+    @IBAction func refreshButtonAction(_ sender: Any) {
+        if let searchText = self.searchText.text {
+            if searchText.count > 0 {
+                ImagesPresenter.instance.getImages(keyword: searchText)
+            } else {
+                ImagesPresenter.instance.getImages(keyword: "")
+            }
+        } else {
+            ImagesPresenter.instance.getImages(keyword: "")
+        }
+    }
+    
     
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -105,6 +118,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         return 10
     }
 
+    // MARK: - UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        ImagesPresenter.instance.getImage(index: indexPath.row)
+        self.performSegue(withIdentifier: "detailImage", sender: nil)
+    }
     
     // MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -141,15 +160,5 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-//        if self.emailFormatoErrato.isEnabled {
-//            self.emailFormatoErrato.isHidden = false
-//        } else {
-//            self.emailFormatoErrato.isHidden = true
-//        }
-//
-//        self.isConfermaActionEnabled()
-    }
-
 }
 

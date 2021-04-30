@@ -11,6 +11,8 @@
 		3A1306BF263AEDCC00D9E2F9 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1306BE263AEDCC00D9E2F9 /* PhotoCollectionViewCell.swift */; };
 		3A2BF595263AF29F00089ADD /* ImagesCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2BF594263AF29F00089ADD /* ImagesCache.swift */; };
 		3A2BF59D263AF30C00089ADD /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2BF59C263AF30C00089ADD /* UIImageView+Download.swift */; };
+		3AA1A274263B17A4007CBE81 /* ZoomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1A273263B17A4007CBE81 /* ZoomImageView.swift */; };
+		3AA1A279263B1939007CBE81 /* DetailImagePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1A278263B1939007CBE81 /* DetailImagePhotoViewController.swift */; };
 		3AA43B98263A03C4006E8E75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43B97263A03C4006E8E75 /* AppDelegate.swift */; };
 		3AA43B9A263A03C4006E8E75 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43B99263A03C4006E8E75 /* SceneDelegate.swift */; };
 		3AA43B9C263A03C4006E8E75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43B9B263A03C4006E8E75 /* ViewController.swift */; };
@@ -48,6 +50,8 @@
 		3A1306BE263AEDCC00D9E2F9 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		3A2BF594263AF29F00089ADD /* ImagesCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCache.swift; sourceTree = "<group>"; };
 		3A2BF59C263AF30C00089ADD /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
+		3AA1A273263B17A4007CBE81 /* ZoomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomImageView.swift; sourceTree = "<group>"; };
+		3AA1A278263B1939007CBE81 /* DetailImagePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImagePhotoViewController.swift; sourceTree = "<group>"; };
 		3AA43B94263A03C4006E8E75 /* RedditImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA43B97263A03C4006E8E75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AA43B99263A03C4006E8E75 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				3AA43BD2263A1170006E8E75 /* inspectable */,
 				3AA43BD1263A1165006E8E75 /* extensions */,
 				3A2BF594263AF29F00089ADD /* ImagesCache.swift */,
+				3AA1A273263B17A4007CBE81 /* ZoomImageView.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				3A1306BE263AEDCC00D9E2F9 /* PhotoCollectionViewCell.swift */,
+				3AA1A278263B1939007CBE81 /* DetailImagePhotoViewController.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -349,7 +355,9 @@
 				3A2BF59D263AF30C00089ADD /* UIImageView+Download.swift in Sources */,
 				3AA43B9C263A03C4006E8E75 /* ViewController.swift in Sources */,
 				3A2BF595263AF29F00089ADD /* ImagesCache.swift in Sources */,
+				3AA1A274263B17A4007CBE81 /* ZoomImageView.swift in Sources */,
 				3AA43B98263A03C4006E8E75 /* AppDelegate.swift in Sources */,
+				3AA1A279263B1939007CBE81 /* DetailImagePhotoViewController.swift in Sources */,
 				3AA43C07263A180F006E8E75 /* ImagePhoto.swift in Sources */,
 				3AA43B9A263A03C4006E8E75 /* SceneDelegate.swift in Sources */,
 				3AA43BD4263A11BF006E8E75 /* UITextField.swift in Sources */,
@@ -567,6 +575,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AM44M745BA;
 				INFOPLIST_FILE = RedditImageTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -588,6 +597,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AM44M745BA;
 				INFOPLIST_FILE = RedditImageTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
