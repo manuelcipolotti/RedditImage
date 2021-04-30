@@ -71,7 +71,7 @@ struct ChildData: Codable {
 //    let approvedBy: NSNull
     let authorPremium: Bool?
     let thumbnail: String?
-    let edited: Bool?
+//    let edited: Bool?
 //    let authorFlairCSSClass: NSNull
 //    let authorFlairRichtext: [Any?]
     let gildings: Gildings?
