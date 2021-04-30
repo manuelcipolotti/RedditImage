@@ -30,8 +30,8 @@ class ImageModel: NSObject {
                 if !keyword.isEmpty {
                     if keyword == "batman" {
                         var images: [ImagePhoto] = []
-                        images.append(ImagePhoto.init(title: "Prova 1", url: "https://b.thumbs.redditmedia.com/gRQqFu2Eaxpl8XF86dckWA2vp1nXRW1NjKjSB9fiMWw.jpg", author: "Manuel", first: true, last: false))
-                        images.append(ImagePhoto.init(title: "Prova 2", url: "https://b.thumbs.redditmedia.com/sMSrTC_Xa8ZzTGyI-PrZUWdGMX_iSdFGs-aQIad4A3g.jpg", author: "Manuel", first: false, last: true))
+                        images.append(ImagePhoto.init(title: "Prova 1", url: "https://b.thumbs.redditmedia.com/gRQqFu2Eaxpl8XF86dckWA2vp1nXRW1NjKjSB9fiMWw.jpg", author: "Manuel"))
+                        images.append(ImagePhoto.init(title: "Prova 2", url: "https://b.thumbs.redditmedia.com/sMSrTC_Xa8ZzTGyI-PrZUWdGMX_iSdFGs-aQIad4A3g.jpg", author: "Manuel"))
                         promise(.success(images))
                     } else {
                         promise(.success([]))
@@ -86,26 +86,18 @@ class ImageModel: NSObject {
                                 return false
                             }
                         })
-                        var listImagePhoto: [ImagePhoto] = redditChilds.map({
+                        let listImagePhoto: [ImagePhoto] = redditChilds.map({
                             let children = $0
                             if let imageUrl = children.data?.thumbnail,
                                let title = children.data?.title,
                                let author = children.data?.author {
                                 return ImagePhoto.init(title: title,
                                                        url: imageUrl,
-                                                       author: author,
-                                                       first: false,
-                                                       last: false)
+                                                       author: author)
                             } else {
-                                return ImagePhoto.init(title: "", url: "", author: "", first: false, last: false)
+                                return ImagePhoto.init(title: "", url: "", author: "")
                             }
                         })
-                        if let _ = listImagePhoto.first {
-                            listImagePhoto[0].first = true
-                        }
-                        if let _ = listImagePhoto.last {
-                            listImagePhoto[listImagePhoto.count-1].last = true
-                        }
                         return listImagePhoto
                     } else {
                         let listImagePhoto: [ImagePhoto] = []
@@ -120,5 +112,91 @@ class ImageModel: NSObject {
         }
         
     }
+    
+    func setFavorite(imagePhoto: ImagePhoto) -> AnyPublisher<Bool, Never> {
+      
+        let future = Future<Bool, Never> { promise in
+            let defaults = UserDefaults.standard
+            var imagesPhotoToSave: [ImagePhoto] = [imagePhoto]
+            if let imagesPhotoData = defaults.object(forKey: "imagesFovorite") as? Data {
+                let decoder = JSONDecoder()
+                if let imagesPhoto = try? decoder.decode([ImagePhoto].self, from: imagesPhotoData) {
+                    imagesPhotoToSave.append(contentsOf: imagesPhoto)
+                }
+            }
+
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(imagesPhotoToSave) {
+                UserDefaults.standard.setValue(encoded, forKey: "imagesFovorite")
+                promise(.success(true))
+            } else {
+                promise(.success(false))
+            }
+        }
+        return future.eraseToAnyPublisher()
+    }
+
+    func isFavorite(imagePhoto: ImagePhoto) -> AnyPublisher<Bool, Never> {
+      
+        let future = Future<Bool, Never> { promise in
+            let defaults = UserDefaults.standard
+            if let imagesPhotoData = defaults.object(forKey: "imagesFovorite") as? Data {
+                let decoder = JSONDecoder()
+                if let imagesPhoto = try? decoder.decode([ImagePhoto].self, from: imagesPhotoData) {
+                    if let _ = imagesPhoto.first(where: {
+                        return $0.author == imagePhoto.author
+                            && $0.title == imagePhoto.title
+                            && $0.url == imagePhoto.url
+                    }) {
+                        promise(.success(true))
+                    }
+                }
+            }
+            promise(.success(false))
+        }
+        return future.eraseToAnyPublisher()
+    }
+
+    func removeFavorite(imagePhoto: ImagePhoto) -> AnyPublisher<Bool, Never> {
+        
+        let future = Future<Bool, Never> { promise in
+            let defaults = UserDefaults.standard
+            if let imagesPhotoData = defaults.object(forKey: "imagesFovorite") as? Data {
+                let decoder = JSONDecoder()
+                if var imagesPhoto = try? decoder.decode([ImagePhoto].self, from: imagesPhotoData) {
+                    imagesPhoto.removeAll(where: {
+                        return $0.author == imagePhoto.author
+                            && $0.title == imagePhoto.title
+                            && $0.url == imagePhoto.url
+                    })
+                    let encoder = JSONEncoder()
+                    if let encoded = try? encoder.encode(imagesPhoto) {
+                        UserDefaults.standard.setValue(encoded, forKey: "imagesFovorite")
+                        promise(.success(true))
+                    }
+                }
+            }
+            promise(.success(false))
+        }
+        return future.eraseToAnyPublisher()
+    }
+
+    
+    func loadImagesFavorite() -> AnyPublisher<[ImagePhoto], Never> {
+        
+        let future = Future<[ImagePhoto], Never> { promise in
+            
+            let defaults = UserDefaults.standard
+            if let imagesPhotoData = defaults.object(forKey: "imagesFovorite") as? Data {
+                let decoder = JSONDecoder()
+                if let imagesPhoto = try? decoder.decode([ImagePhoto].self, from: imagesPhotoData) {
+                    promise(.success(imagesPhoto))
+                }
+            }
+            promise(.success([]))
+        }
+        return future.eraseToAnyPublisher()
+    }
+
     
 }

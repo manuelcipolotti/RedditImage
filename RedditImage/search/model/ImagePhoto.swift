@@ -12,6 +12,12 @@ struct ImagePhoto: Codable {
     var title: String
     var url: String
     var author: String
-    var first: Bool
-    var last: Bool
+}
+
+extension ImagePhoto {
+    init(imagePhotoDetail: ImagePhotoDetailView) {
+        self.author = imagePhotoDetail.author
+        self.title = imagePhotoDetail.title
+        self.url = imagePhotoDetail.url
+    }
 }

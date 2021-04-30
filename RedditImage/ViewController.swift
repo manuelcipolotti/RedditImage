@@ -8,7 +8,9 @@
 import UIKit
 import Combine
 
-class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController, UITextFieldDelegate, ImagePhotoListViewDelegate {
+    
+    
     
 
     var canc = Set<AnyCancellable>()
@@ -18,8 +20,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
     @IBOutlet weak var noDataFoundView: UIView!
     @IBOutlet weak var noTextSearchView: UIView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
+    @IBOutlet weak var favoritesButton: UIButton!
     
     var imagesList: [ImagePhoto] = []
+    
+    var imagePhotoController: ImagesPhotoController? 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +35,20 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         self.refreshButton.isHidden = true
         self.noDataFoundView.isHidden = true
         self.noTextSearchView.isHidden = false
-        self.imageCollectionView.delegate = self
+        
+        self.imagePhotoController = ImagesPhotoController.init(collectionView: self.imageCollectionView,
+                                                               viewController: self)
+        self.imageCollectionView.delegate = self.imagePhotoController
+        self.imageCollectionView.dataSource = self.imagePhotoController
+
         ImagesPresenter.instance.$imagesList.sink(receiveValue: { list in
             
             DispatchQueue.main.async(execute: {
                 if let list = list {
                     self.imagesList = list
-                    self.imageCollectionView.reloadData()
-                    self.imageCollectionView.collectionViewLayout.invalidateLayout()
+                    self.imagePhotoController?.reloadData(list: list)
+//                    self.imageCollectionView.reloadData()
+//                    self.imageCollectionView.collectionViewLayout.invalidateLayout()
                     self.refreshButton.isHidden = false
                     if list.count == 0 {
                         self.noDataFoundView.isHidden = false
@@ -66,6 +77,14 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         self.imageCollectionView.collectionViewLayout.invalidateLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ImagesPresenter.instance.isFavorites(okAction: { favorite in
+                                                self.favoritesButton.isHidden = !favorite
+                                             })
+
+    }
+    
     @IBAction func refreshButtonAction(_ sender: Any) {
         if let searchText = self.searchText.text {
             if searchText.count > 0 {
@@ -78,75 +97,22 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         }
     }
     
-    
-    // MARK: - UICollectionViewDelegateFlowLayout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var columns: CGFloat = 3
-        var collectionWidth = collectionView.bounds.width
-        if let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation {
-            if orientation == .landscapeLeft || orientation == .landscapeRight {
-                collectionWidth = collectionView.bounds.width
-                if UIDevice.current.userInterfaceIdiom == .pad {
-                    columns = 6
-                } else {
-                    columns = 3
-                }
-            } else {
-                collectionWidth = collectionView.bounds.width
-                if UIDevice.current.userInterfaceIdiom == .pad {
-                    columns = 3
-                } else {
-                    columns = 2
-                }
-            }
-        }
-        let spacing: CGFloat = 10
-        let totalHorizontalSpacing = (columns - 1) * spacing
-        let itemWidth = (collectionWidth - totalHorizontalSpacing) / columns
-        let itemSize = CGSize.init(width: itemWidth,
-                                   height: itemWidth)
-        print("itemWidth: \(itemWidth)")
-        print("collectionWidth: \(collectionWidth)")
-        return itemSize
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+    // MARK: - ImagePhotoListViewDelegate
+    func setSelected(index: Int) {
+        ImagesPresenter.instance.getImageSelected(index: index)
     }
 
-    // MARK: - UICollectionViewDelegate
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        ImagesPresenter.instance.getImage(index: indexPath.row)
-        self.performSegue(withIdentifier: "detailImage", sender: nil)
-    }
-    
-    // MARK: - UICollectionViewDataSource
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.imagesList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotoCollectionViewCell {
-            let imageList = self.imagesList[indexPath.row]
-            cell.imagePhoto.loadImageAsync(with: imageList.url)
-            return cell
-        } else {
-            return UICollectionViewCell.init()
-        }
-    }
-
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // Only one word: no space o special chars
+        return string.rangeOfCharacter(from: CharacterSet.letters) != nil || string == ""
+    }
     
     @IBAction func searchChangedText(_ sender: Any) {
         if let searchTextField = sender as? UITextField, let searchText = searchTextField.text {
