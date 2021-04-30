@@ -21,6 +21,8 @@ class SearchImageViewController: UIViewController, UITextFieldDelegate, ImagePho
     @IBOutlet weak var noTextSearchView: UIView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var favoritesButton: UIButton!
+    @IBOutlet weak var waitView: UIView!
+    @IBOutlet weak var errorView: UIView!
     
     var imagesList: [ImagePhoto] = []
     
@@ -69,7 +71,32 @@ class SearchImageViewController: UIViewController, UITextFieldDelegate, ImagePho
             
         }).store(in: &self.canc)
         
-        
+        ImagesPresenter.instance.$isLoading.sink(receiveValue: { isLoading in
+            
+            DispatchQueue.main.async(execute: {
+                if isLoading {
+                    self.waitView.isHidden = false
+                } else {
+                    self.waitView.isHidden = true
+                }
+            })
+            
+            
+        }).store(in: &self.canc)
+
+        ImagesPresenter.instance.$isConnectionError.sink(receiveValue: { isConnectionError in
+            
+            DispatchQueue.main.async(execute: {
+                if isConnectionError {
+                    self.errorView.isHidden = false
+                } else {
+                    self.errorView.isHidden = true
+                }
+            })
+            
+            
+        }).store(in: &self.canc)
+
     }
     
     override func viewWillLayoutSubviews() {

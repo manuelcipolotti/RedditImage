@@ -57,6 +57,9 @@ class ImageModel: NSObject {
 
         if let url = URL.init(string: self.urlReddit.replacingOccurrences(of: "{KEYWORD}", with: keyword)) {
             return URLSession.shared.dataTaskPublisher(for: url)
+                .mapError({ error -> Error in
+                    return error
+                 })
                 .tryMap { element -> Data in
                     
                     if let httpResponse = element.response as? HTTPURLResponse,

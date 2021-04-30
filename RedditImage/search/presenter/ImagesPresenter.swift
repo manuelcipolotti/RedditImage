@@ -19,8 +19,9 @@ class ImagesPresenter: NSObject {
     @Published public var imageSelected: ImagePhotoDetailView?
     @Published public var favoriteImageSelected: ImagePhotoDetailView?
 
-    @Published public var newAnswer: Bool?
-    
+    @Published public var isLoading: Bool = false
+    @Published public var isConnectionError: Bool = false
+
     private var imageSelectedIndex: Int?
     private var favoriteImageSelectedIndex: Int?
 
@@ -30,10 +31,11 @@ class ImagesPresenter: NSObject {
     let model: ImageModel = ImageModel.init()
     
     func getImages(keyword: String) {
-        
+        self.isLoading = true
+        self.isConnectionError = false
         model.getImagesFromURL(keyword: keyword)
-            .sink(receiveCompletion: {
-                completion in
+            .sink(receiveCompletion: { completion in
+                self.isLoading = false
                 switch completion {
                 case .failure(let error):
                     if let serviceError = error as? ServiceError{
@@ -41,10 +43,12 @@ class ImagesPresenter: NSObject {
                         case .empty:
                             self.imagesList = []
                         default:
+                            self.isConnectionError = true
                             print(error, "Failed")
                         }
                         print(serviceError)
                     } else {
+                        self.isConnectionError = true
                         print(error, "Failed")
                     }
                 case .finished:
