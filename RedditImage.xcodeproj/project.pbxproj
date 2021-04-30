@@ -20,7 +20,7 @@
 		3AA1A279263B1939007CBE81 /* DetailImagePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1A278263B1939007CBE81 /* DetailImagePhotoViewController.swift */; };
 		3AA43B98263A03C4006E8E75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43B97263A03C4006E8E75 /* AppDelegate.swift */; };
 		3AA43B9A263A03C4006E8E75 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43B99263A03C4006E8E75 /* SceneDelegate.swift */; };
-		3AA43B9C263A03C4006E8E75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43B9B263A03C4006E8E75 /* ViewController.swift */; };
+		3AA43B9C263A03C4006E8E75 /* SearchImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA43B9B263A03C4006E8E75 /* SearchImageViewController.swift */; };
 		3AA43B9F263A03C4006E8E75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA43B9D263A03C4006E8E75 /* Main.storyboard */; };
 		3AA43BA1263A03C6006E8E75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AA43BA0263A03C6006E8E75 /* Assets.xcassets */; };
 		3AA43BA4263A03C6006E8E75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA43BA2263A03C6006E8E75 /* LaunchScreen.storyboard */; };
@@ -65,7 +65,7 @@
 		3AA43B94263A03C4006E8E75 /* RedditImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA43B97263A03C4006E8E75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AA43B99263A03C4006E8E75 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3AA43B9B263A03C4006E8E75 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3AA43B9B263A03C4006E8E75 /* SearchImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchImageViewController.swift; sourceTree = "<group>"; };
 		3AA43B9E263A03C4006E8E75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3AA43BA0263A03C6006E8E75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AA43BA3263A03C6006E8E75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -135,7 +135,6 @@
 				3AA43BD0263A115A006E8E75 /* utils */,
 				3AA43B97263A03C4006E8E75 /* AppDelegate.swift */,
 				3AA43B99263A03C4006E8E75 /* SceneDelegate.swift */,
-				3AA43B9B263A03C4006E8E75 /* ViewController.swift */,
 				3AA43B9D263A03C4006E8E75 /* Main.storyboard */,
 				3AA43BA0263A03C6006E8E75 /* Assets.xcassets */,
 				3AA43BA2263A03C6006E8E75 /* LaunchScreen.storyboard */,
@@ -221,6 +220,7 @@
 		3AA43C04263A17CD006E8E75 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				3AA43B9B263A03C4006E8E75 /* SearchImageViewController.swift */,
 				3A1306BE263AEDCC00D9E2F9 /* PhotoCollectionViewCell.swift */,
 				3AA1A278263B1939007CBE81 /* DetailImagePhotoViewController.swift */,
 				14A139C2263C3CB7007925B6 /* ImagePhotoDetailView.swift */,
@@ -370,7 +370,7 @@
 				3A1306B7263AA71C00D9E2F9 /* RedditResponse.swift in Sources */,
 				3AA43C16263A1AAE006E8E75 /* ImagesPresenter.swift in Sources */,
 				3A2BF59D263AF30C00089ADD /* UIImageView+Download.swift in Sources */,
-				3AA43B9C263A03C4006E8E75 /* ViewController.swift in Sources */,
+				3AA43B9C263A03C4006E8E75 /* SearchImageViewController.swift in Sources */,
 				3A2BF595263AF29F00089ADD /* ImagesCache.swift in Sources */,
 				14A139CA263C6D5B007925B6 /* FavoritesViewController.swift in Sources */,
 				3AA1A274263B17A4007CBE81 /* ZoomImageView.swift in Sources */,
